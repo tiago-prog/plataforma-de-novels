@@ -1,19 +1,6 @@
 # Plano de Projeto: Plataforma de Conteúdo (1h/dia)
 
-## 1. Metodologia e Planejamento
 
-Este plano foi elaborado para guiar o desenvolvimento da plataforma de conteúdo com uma dedicação diária de **1 hora**. A metodologia utilizada baseia-se em **Sprints semanais** e na estimativa de dificuldade por **Pontos por Função (PF)**, inspirada no método ágil.
-
-Adotaremos uma escala baseada na sequência de Fibonacci (1, 2, 3, 5, 8, 13) para estimar o esforço necessário de cada tarefa.
-
-| PF  | Complexidade  | Descrição                                                                 | Estimativa (h) |
-|:---:|:-------------:|:-------------------------------------------------------------------------|:--------------:|
-|  1  | Mínima        | Tarefa trivial, bem definida.                                             | ~0.5h          |
-|  2  | Baixa         | Simples, com escopo claro e poucas dependências.                          | ~1h            |
-|  3  | Média-baixa   | Envolve mais passos, mas é bem compreendida.                              | ~1.5–2h        |
-|  5  | Média         | Envolve lógica ou novos componentes.                                      | ~2.5–3h        |
-|  8  | Média-alta    | Integrações ou lógica de negócio mais complexa.                           | ~4–5h          |
-| 13  | Alta          | Muito complexa, com múltiplos componentes e incertezas.                   | ~6–8h          |
 
 ### Organização em Sprints Semanais
 
@@ -26,9 +13,6 @@ O projeto será dividido em **Fases**, cada uma com múltiplos Sprints, visando 
 
 ---
 
-## 2. Backlog de Funcionalidades e Estimativas
-
-As funcionalidades da plataforma estão organizadas por módulos. Cada tarefa é identificada por um ID e tem sua estimativa em Pontos por Função (PF).
 
 ### 🧱 Módulo 1: Fundação e Autenticação
 
