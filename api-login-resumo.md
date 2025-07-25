@@ -3,9 +3,11 @@
 ## Endpoints Principais
 
 ### 1. Login
+
 **POST /api/auth/login**
 
 **Request:**
+
 ```json
 {
   "email": "usuario@exemplo.com",
@@ -14,6 +16,7 @@
 ```
 
 **Response (Success - 200):**
+
 ```json
 {
   "success": true,
@@ -33,6 +36,7 @@
 ```
 
 **Response (Error - 401):**
+
 ```json
 {
   "success": false,
@@ -44,9 +48,11 @@
 ```
 
 ### 2. Registro
+
 **POST /api/auth/register**
 
 **Request:**
+
 ```json
 {
   "username": "novo_usuario",
@@ -59,9 +65,11 @@
 ```
 
 ### 3. Refresh Token
+
 **POST /api/auth/refresh-token**
 
 **Request:**
+
 ```json
 {
   "refresh_token": "refresh_token_here_longer_lived"
@@ -69,9 +77,11 @@
 ```
 
 ### 4. Logout
+
 **POST /api/auth/logout**
 
 **Request:**
+
 ```json
 {
   "refresh_token": "refresh_token_to_invalidate"
@@ -80,13 +90,13 @@
 
 ## Códigos de Erro
 
-| Código | HTTP Status | Descrição |
-|--------|-------------|-----------|
-| `INVALID_CREDENTIALS` | 401 | Email ou senha inválidos |
-| `TOKEN_EXPIRED` | 401 | Token de acesso expirado |
-| `EMAIL_ALREADY_EXISTS` | 409 | Email já cadastrado |
-| `WEAK_PASSWORD` | 422 | Senha muito fraca |
-| `ACCOUNT_LOCKED` | 423 | Conta bloqueada temporariamente |
+| Código                 | HTTP Status | Descrição                       |
+| ---------------------- | ----------- | ------------------------------- |
+| `INVALID_CREDENTIALS`  | 401         | Email ou senha inválidos        |
+| `TOKEN_EXPIRED`        | 401         | Token de acesso expirado        |
+| `EMAIL_ALREADY_EXISTS` | 409         | Email já cadastrado             |
+| `WEAK_PASSWORD`        | 422         | Senha muito fraca               |
+| `ACCOUNT_LOCKED`       | 423         | Conta bloqueada temporariamente |
 
 ## Configurações JWT
 
@@ -98,6 +108,7 @@
 ## Headers Obrigatórios
 
 Para requisições autenticadas:
+
 ```
 Authorization: Bearer <jwt_token>
 Content-Type: application/json
@@ -117,17 +128,18 @@ Content-Type: application/json
 
 ## Endpoints Complementares
 
-| Endpoint | Método | Descrição | Auth Required |
-|----------|--------|-----------|---------------|
-| `/api/auth/verify-email` | POST | Verifica email via código | Não |
-| `/api/auth/forgot-password` | POST | Inicia recuperação de senha | Não |
-| `/api/auth/reset-password` | POST | Redefine senha com token | Não |
-| `/api/auth/me` | GET | Dados do usuário autenticado | Sim |
-| `/api/auth/change-password` | PUT | Altera senha do usuário | Sim |
+| Endpoint                    | Método | Descrição                    | Auth Required |
+| --------------------------- | ------ | ---------------------------- | ------------- |
+| `/api/auth/verify-email`    | POST   | Verifica email via código    | Não           |
+| `/api/auth/forgot-password` | POST   | Inicia recuperação de senha  | Não           |
+| `/api/auth/reset-password`  | POST   | Redefine senha com token     | Não           |
+| `/api/auth/me`              | GET    | Dados do usuário autenticado | Sim           |
+| `/api/auth/change-password` | PUT    | Altera senha do usuário      | Sim           |
 
 ## Implementação Frontend (isso aqui é sobre implementação do JWT)
 
 ### Armazenamento
+
 ```javascript
 localStorage.setItem('access_token', response.token);
 // Duvido que vamos implementar o refresh Token, mas se conseguir top xD
@@ -135,12 +147,15 @@ localStorage.setItem('refresh_token', response.refresh_token);
 ```
 
 ### Configuração Axios
+
 ```javascript
-axios.defaults.headers.common['Authorization'] = 
-  `Bearer ${localStorage.getItem('access_token')}`;
+axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem(
+  'access_token',
+)}`;
 ```
 
 ### Interceptor para Renovação Automática
+
 ```javascript
 axios.interceptors.response.use(
   (response) => response,
@@ -151,6 +166,6 @@ axios.interceptors.response.use(
       return axios.request(error.config);
     }
     return Promise.reject(error);
-  }
+  },
 );
 ```
